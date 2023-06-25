@@ -1,69 +1,95 @@
 import React, { useState } from "react";
 import "./SideNavBar.css";
+import MaterialIcon, { colorPalette } from "material-icons-react";
 
 const SideNavBar = () => {
-    const [isExpended, setExpendedState] = useState(false);
-    const menuItems = [
-        {
-            text: "Principal"
+  const [isExpanded, setExpandState] = useState(false);
 
-        },
-        {
-            text: "Pacientes"
+  const menuItems = [
+    {
+      text: "Inicio",
+      icon: "grid_on",
+    },
+    {
+      text: "Pacientes",
+      icon: "person_outline",
+    },
+    {
+      text: "Medicos",
+      icon: "person",
+    },
+    {
+      text: "Tecnicos",
+      icon: "build",
+    },
+    {
+      text: "Equipos",
+      icon: "devices",
+    },
+  ];
 
-        },
-        {
-            text: "Medicos"
-
-        },
-        {
-            text: "Tecnicos"
-
-        },
-        {
-            text: "Equipos"
-
-        }
-    ]
-    return (
-        <div className="nav-upper">
-            <div className={isExpended ? "side-nav-container" : "side-nav-container side-nav-container-NX"}>
-                <div className="nav-heading">
-                    {isExpended && (<div className="nav-brand">
-                        <img src="public\icons\rx.svg" alt="nav brand"></img>
-                        <h2>Laboratorio RX</h2>
-                    </div>)}
-                    <button className={isExpended ? "RX RX-in" : "RX RX-out"}
-                        onClick={() => setExpendedState(!isExpended)}
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-                <div className="nav-menu">
-                    {menuItems.map(({ text, icon }) => (
-                        <a href="#" className={isExpended ? "menu-item" : "menu-item menu-item-NX"}>
-                            <img src={icon} alt="" srcSet="" />
-                            {isExpended && <p>{text}</p>}
-                            {isExpended && <div className="tooltip">{text}</div>}
-                        </a>
-                    ))}
-                </div>
-                <div className="nav-footer">
-                    <div className="nav-details">
-                        <img src="public\icons\rx.svg" alt="" srcSet=""></img>
-                        <div className="nav-footer-info">
-                            <p className="nav-footer-user-name"> RX </p>
-                            <p className="nav-footer-user-position">Lab</p>
-                            
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div
+      className={
+        isExpanded
+          ? "side-nav-container"
+          : "side-nav-container side-nav-container-NX"
+      }
+    >
+      <div className="nav-upper">
+        <div className="nav-heading">
+          {isExpanded && (
+            <div className="nav-brand">
+              <img src="icons/rx.svg" alt="" srcSet="" />
+              <h2>Laboratorio RX</h2>
             </div>
+          )}
+          <button
+            className={isExpanded ? "rx rx-in" : "rx rx-out"}
+            onClick={() => setExpandState(!isExpanded)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-    )
-}
+        <div className="nav-menu">
+          {menuItems.map(({ text, icon }) => (
+            <a
+              className={isExpanded ? "menu-item" : "menu-item menu-item-NX"}
+              href="#"
+            >
+              {icon && (
+                <MaterialIcon
+                  icon={icon}
+                  color={colorPalette.blueGrey._200}
+                  size={24}
+                />
+              )}
+              {isExpanded && <p>{text}</p>}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div className="nav-footer">
+        {isExpanded && (
+          <div className="nav-details">
+            <img
+              className="nav-footer-avatar"
+              src="icons/admin-avatar.svg"
+              alt=""
+              srcSet=""
+            />
+            <div className="nav-footer-info">
+              <p className="nav-footer-user-name">Usuario</p>
+              <p className="nav-footer-user-position">Tipo</p>
+            </div>
+          </div>
+        )}
+        <img className="logout-icon" src="icons/logout.svg" alt="" srcSet="" />
+      </div>
+    </div>
+  );
+};
 
-export default SideNavBar
+export default SideNavBar;
