@@ -1,5 +1,7 @@
 import './App.css';
 import SideNavBar from './SideNavBar/SideNavBar';
+import Body from './Body/Body';
+
 
 
 function App() {
