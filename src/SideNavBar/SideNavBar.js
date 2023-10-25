@@ -26,6 +26,10 @@ const SideNavBar = () => {
       text: "Equipos",
       icon: "devices",
     },
+    {
+      text: "Administrador",
+      icon: "devices",
+    },
   ];
 
   return (
